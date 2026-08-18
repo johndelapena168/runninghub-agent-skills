@@ -1,7 +1,7 @@
-# RunningHub Agent Skills
+﻿# RunningHub Agent Skills
 
 Give **any** AI coding agent the ability to generate images, videos, audio, and 3D
-models through the [RunningHub](https://www.runninghub.cn) API — and to run any
+models through the [RunningHub](https://www.runninghub.cn) API â€” and to run any
 RunningHub AI Application (custom ComfyUI workflow).
 
 > Adapted for cross-agent use from
@@ -26,7 +26,7 @@ or any other agent that supports the Agent Skills format.
 | **Audio** | 20 | TTS, music generation, voice clone |
 | **3D** | 16 | text-to-3D, image-to-3D, multi-image-to-3D |
 | **Text** | 48 | image understanding, video understanding, text processing |
-| **AI Apps** | ∞ | run any RunningHub AI Application (custom ComfyUI workflow) |
+| **AI Apps** | âˆž | run any RunningHub AI Application (custom ComfyUI workflow) |
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ directory.
 ### Claude Code
 ```bash
 # user-level (all projects)
-git clone https://github.com/YOUR_USER/runninghub-agent-skills /tmp/rh-skills
+git clone https://github.com/johndelapena168/runninghub-agent-skills /tmp/rh-skills
 mkdir -p ~/.claude/skills
 cp -r /tmp/rh-skills/skills/runninghub ~/.claude/skills/
 ```
@@ -57,22 +57,22 @@ cp -r /path/to/runninghub-agent-skills/skills/runninghub .cursor/skills/
 ### Qoder
 ```bash
 # user-level (all projects)
-git clone https://github.com/YOUR_USER/runninghub-agent-skills /tmp/rh-skills
+git clone https://github.com/johndelapena168/runninghub-agent-skills /tmp/rh-skills
 mkdir -p ~/.qoder/skills
 cp -r /tmp/rh-skills/skills/runninghub ~/.qoder/skills/
 ```
-Or install as a Qoder plugin — this repo ships a `.qoder-plugin/plugin.json`.
+Or install as a Qoder plugin â€” this repo ships a `.qoder-plugin/plugin.json`.
 
 ### OpenClaw
 ```
-从 https://github.com/YOUR_USER/runninghub-agent-skills 安装 RunningHub 技能
+ä»Ž https://github.com/johndelapena168/runninghub-agent-skills å®‰è£… RunningHub æŠ€èƒ½
 ```
 (The upstream install flow still works; this fork keeps OpenClaw compatibility.)
 
 ## Configure your API key
 
-The scripts read the key in this order: `--api-key` flag → `RUNNINGHUB_API_KEY`
-env var → OpenClaw config. For every agent except OpenClaw, set the env var:
+The scripts read the key in this order: `--api-key` flag â†’ `RUNNINGHUB_API_KEY`
+env var â†’ OpenClaw config. For every agent except OpenClaw, set the env var:
 
 ```bash
 export RUNNINGHUB_API_KEY="your-key-here"     # macOS/Linux
@@ -82,7 +82,7 @@ setx RUNNINGHUB_API_KEY "your-key-here"       # Windows
 Verify it works:
 ```bash
 python3 skills/runninghub/scripts/runninghub.py --check
-# → {"status": "ready", "balance": "...", "coins": "...", "api_type": "SHARED"}
+# â†’ {"status": "ready", "balance": "...", "coins": "...", "api_type": "SHARED"}
 ```
 
 ## Usage
@@ -120,18 +120,18 @@ model menu, and runs the generation:
 
 ```
 runninghub-agent-skills/
-├── skills/runninghub/
-│   ├── SKILL.md                      # Cross-agent skill definition
-│   ├── scripts/
-│   │   ├── runninghub.py             # Standard Model API client (394 endpoints)
-│   │   ├── runninghub_app.py         # AI Application client
-│   │   └── build_capabilities.py     # Regenerate capabilities.json
-│   ├── data/capabilities.json        # Full endpoint catalog (auto-generated)
-│   └── references/                   # Model menus, key setup, delivery rules
-├── .qoder-plugin/plugin.json         # Qoder packaging
-├── assets/avatar.svg
-├── LICENSE                           # Apache-2.0
-└── README.md
+â”œâ”€â”€ skills/runninghub/
+â”‚   â”œâ”€â”€ SKILL.md                      # Cross-agent skill definition
+â”‚   â”œâ”€â”€ scripts/
+â”‚   â”‚   â”œâ”€â”€ runninghub.py             # Standard Model API client (394 endpoints)
+â”‚   â”‚   â”œâ”€â”€ runninghub_app.py         # AI Application client
+â”‚   â”‚   â””â”€â”€ build_capabilities.py     # Regenerate capabilities.json
+â”‚   â”œâ”€â”€ data/capabilities.json        # Full endpoint catalog (auto-generated)
+â”‚   â””â”€â”€ references/                   # Model menus, key setup, delivery rules
+â”œâ”€â”€ .qoder-plugin/plugin.json         # Qoder packaging
+â”œâ”€â”€ assets/avatar.svg
+â”œâ”€â”€ LICENSE                           # Apache-2.0
+â””â”€â”€ README.md
 ```
 
 ## What changed vs upstream
