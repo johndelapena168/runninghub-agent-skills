@@ -1,4 +1,4 @@
-﻿# RunningHub Agent Skills
+# RunningHub Agent Skills
 
 Give **any** AI coding agent the ability to generate images, videos, audio, and 3D
 models through the [RunningHub](https://www.runninghub.cn) API â€” and to run any
