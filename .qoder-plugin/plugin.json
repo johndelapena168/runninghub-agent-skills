@@ -1,0 +1,17 @@
+{
+  "name": "runninghub-agent-skills",
+  "displayName": "RunningHub Agent Skills",
+  "version": "0.1.0",
+  "description": "Generate images, videos, audio, and 3D models via the RunningHub API (394 endpoints) and run any RunningHub AI Application. Works with Claude Code, Cursor, Qoder, OpenClaw, and other agents.",
+  "descriptionZh": "通过 RunningHub API（394 个端点）生成图片、视频、音频和 3D 模型，并运行任意 RunningHub AI 应用。兼容 Claude Code、Cursor、Qoder、OpenClaw 等智能体。",
+  "author": {
+    "name": "NextEra AI (adapted from HM-RunningHub/OpenClaw_RH_Skills)"
+  },
+  "homepage": "https://www.runninghub.cn",
+  "repository": "https://github.com/HM-RunningHub/OpenClaw_RH_Skills",
+  "logo": "./assets/avatar.svg",
+  "keywords": ["qoder-plugin", "skill", "runninghub", "video", "image", "tts", "comfyui"],
+  "category": "developer-tools",
+  "tags": ["skill"],
+  "skills": "./skills/"
+}
