@@ -37,6 +37,23 @@ After user replies, map choice → endpoint:
 When user picks 悠船 (3) for image-to-image, tell them warmly:
 > "悠船模型暂时不支持图生图，我帮你用全能图片PRO来处理哈～ 效果也很棒的！"
 
+## CN Endpoint Compliance Notice (verified 2026-08)
+
+Several foreign-model-based endpoints return `errorCode 40310` on the CN node
+(`www.runninghub.cn`): "this model is no longer available on the CN endpoint,
+please migrate to runninghub.ai". Verified delisted on CN with a CN
+Enterprise-Shared key: **#1 全能图片PRO** (`rhart-image-n-pro/*`), **#2 全能图片V2**
+(`rhart-image-n-g31-flash/*`), **#4 GPT Image 2** (`rhart-image-g-2/*`).
+**#5 Seedream v5** (`seedream-v5-lite/*`) still works on CN.
+
+Rules when this happens:
+- The `runninghub.ai` host rejects CN-issued keys with the same 40310, so do
+  not just switch hosts — tell the user the model is unavailable on their key
+  and offer a working alternative (e.g. Seedream v5 for photorealism).
+- The 40310 error costs nothing; probing endpoints to find live ones is safe.
+- `seedream-v5-lite/text-to-image` params: `prompt` + `size` like `1024x1024`
+  or `2048x2048` (NOT resolution/aspectRatio). Fast (~5-10s), ~¥0.22 at 2K.
+
 ## Matching Rules
 
 - Number 1-5 → use that model

@@ -26,8 +26,20 @@ import tempfile
 import time
 from pathlib import Path
 
-BASE_URL = "https://www.runninghub.cn/openapi/v2"
-ACCOUNT_STATUS_URL = "https://www.runninghub.cn/uc/openapi/accountStatus"
+# Force UTF-8 console output on Windows (catalog contains Chinese text).
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        try:
+            _stream.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+# Base host is overridable: some models are only available on the global
+# node (runninghub.ai). Set RUNNINGHUB_BASE_URL to switch.
+BASE_URL = os.environ.get("RUNNINGHUB_BASE_URL", "https://www.runninghub.cn/openapi/v2")
+ACCOUNT_STATUS_URL = os.environ.get(
+    "RUNNINGHUB_ACCOUNT_URL", "https://www.runninghub.cn/uc/openapi/accountStatus"
+)
 POLL_ENDPOINT = "/query"
 UPLOAD_ENDPOINT = "/media/upload/binary"
 
@@ -167,7 +179,7 @@ def curl_post_json(url: str, payload: dict, headers: dict, timeout: int = 60) ->
                "--max-time", str(timeout), "-d", f"@{tmp_path}"]
         for k, v in headers.items():
             cmd += ["-H", f"{k}: {v}"]
-        return subprocess.run(cmd, capture_output=True, text=True)
+        return subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     finally:
         os.unlink(tmp_path)
 
@@ -367,7 +379,7 @@ def upload_file(api_key: str, file_path: str) -> str:
     cmd = ["curl", "-s", "-S", "--fail-with-body", "-X", "POST", url,
            "-H", f"Authorization: Bearer {api_key}",
            "-F", f"file=@{file_path}", "--max-time", "120"]
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.returncode != 0:
         print(f"Upload failed: {result.stderr}", file=sys.stderr)
         sys.exit(1)
@@ -474,7 +486,7 @@ def poll_task(api_key: str, task_id: str) -> dict:
 def download_file(url: str, output_path: str) -> str:
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     cmd = ["curl", "-s", "-S", "-L", "-o", output_path, "--max-time", "300", url]
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.returncode != 0:
         print(f"Download failed: {result.stderr}", file=sys.stderr)
         sys.exit(1)
